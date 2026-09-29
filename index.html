@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rasheed Basheer</title>
+<meta name="description" content="Rasheed Basheer — Senior Frontend Engineer and Engineering Manager. UI architecture, real-time data visualization, and player-coach leadership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial asymmetric hero — oversized name left, portrait in an orange gradient slab bleeding off the right edge, light case-study card overlapping it. */
+:root{
+  --bg:#110E0C;
+  --surface:#1B1613;
+  --line:#2E2621;
+  --fg:#F3ECE5;
+  --muted:#A6978B;
+  --orange-1:#FF9A3C;
+  --orange-2:#E4500E;
+  --accent:#FF8A2B;
+  --panel:#F1E9E0;
+  --panel-ink:#1C1511;
+  --panel-muted:#6B5C50;
+  --ph:#FFC27A;
+  --grad:linear-gradient(150deg,var(--orange-1) 0%,var(--orange-2) 78%);
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --maxw:1240px;
+  --gutter:clamp(16px,4vw,40px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+.label{font:500 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ph{display:inline;font:500 .82em/1.5 var(--f-mono);color:var(--ph);background:rgba(255,194,122,.08);border:1px dashed rgba(255,194,122,.55);border-radius:4px;padding:.05em .4em;letter-spacing:0}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(17,14,12,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
+.mark{font:800 20px/1 var(--f-display);text-decoration:none;letter-spacing:-.02em}
+.mark span{color:var(--accent)}
+.nav{display:flex;gap:28px;font-size:14px;font-weight:500}
+.nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--fg)}
+.social{display:flex;gap:8px}
+.icon-btn{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);color:var(--fg);transition:border-color .2s,background .2s}
+.icon-btn:hover{border-color:var(--accent);background:rgba(255,138,43,.1)}
+.icon-btn svg{width:17px;height:17px;fill:currentColor}
+
+/* Hero */
+.hero{position:relative;padding-block:clamp(40px,7vw,96px) clamp(56px,8vw,112px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:start}
+.hero-copy{min-width:0;display:flex;flex-direction:column;gap:28px;padding-top:clamp(0px,2vw,32px)}
+.eyebrow{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,138,43,.18)}
+.name{font:800 clamp(64px,11vw,168px)/.86 var(--f-display);letter-spacing:-.045em;font-variation-settings:"opsz" 144}
+.name em{display:block;font-style:italic;font-weight:400;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;padding-right:.08em;margin-left:clamp(0px,6vw,96px)}
+.thesis{font:400 clamp(22px,2.4vw,30px)/1.3 var(--f-display);max-width:28ch;color:var(--fg)}
+.intro{color:var(--muted);max-width:58ch;font-size:18px}
+.skills-block{display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chips li{font:500 14px/1 var(--f-body);padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.chips li:first-child{border-color:rgba(255,138,43,.5)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--f-body);padding:16px 22px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn-primary{background:var(--grad);color:#1A0E06;box-shadow:0 10px 30px -10px rgba(228,80,14,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(228,80,14,.85)}
+.btn-ghost{border:1px solid var(--line);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+
+.hero-visual{position:relative;min-width:0}
+.slab{position:relative;background:var(--grad);border-radius:28px 0 0 28px;margin-right:calc(-1 * var(--gutter) - max(0px,(100vw - var(--maxw))/2));padding:28px 0 0 28px;overflow:hidden}
+.slab::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 20% 0%,rgba(255,255,255,.22),transparent 60%);pointer-events:none}
+.portrait{display:block;width:100%;max-width:520px;aspect-ratio:760/1013;object-fit:cover;border-radius:20px 0 0 0;position:relative;z-index:1}
+.vert{position:absolute;right:14px;top:28px;writing-mode:vertical-rl;font:500 11px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(26,14,6,.7);z-index:2}
+.feature{position:relative;z-index:3;margin:-120px 0 0 -48px;max-width:380px;background:var(--panel);color:var(--panel-ink);border-radius:18px;padding:24px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:transform .25s}
+.feature:hover{transform:translateY(-4px)}
+.feature .label{color:var(--panel-muted)}
+.feature h3{font-size:24px;line-height:1.15}
+.feature p{color:var(--panel-muted);font-size:15px;line-height:1.5}
+.feature .more{font:600 14px/1 var(--f-body);color:var(--orange-2);display:flex;align-items:center;gap:8px}
+
+/* Sections */
+section{scroll-margin-top:80px}
+.sec{padding-block:clamp(64px,9vw,128px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.sec-head h2{font-size:clamp(40px,5.6vw,76px);line-height:.95;letter-spacing:-.03em}
+.sec-head h2 em{font-style:italic;font-weight:400;color:var(--accent)}
+.sec-head p{color:var(--muted);max-width:52ch;font-size:18px}
+
+/* Case studies */
+.cases{display:flex;flex-direction:column;gap:clamp(48px,6vw,88px)}
+.case{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px)}
+.case-meta{display:flex;flex-direction:column;gap:18px;min-width:0}
+.case-meta h3{font-size:clamp(28px,3vw,40px);line-height:1.05}
+.case-meta .where{font:500 13px/1.5 var(--f-mono);color:var(--muted)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.stack li{font:500 12px/1 var(--f-mono);padding:7px 9px;border-radius:6px;background:var(--surface);color:var(--muted);border:1px solid var(--line)}
+.metric{display:flex;flex-direction:column;gap:6px;padding-top:18px;border-top:1px solid var(--line)}
+.metric b{font:800 clamp(44px,5vw,64px)/1 var(--f-display);letter-spacing:-.03em;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-variant-numeric:tabular-nums}
+.metric span{font-size:14px;color:var(--muted)}
+.case-body{min-width:0;display:flex;flex-direction:column;gap:24px}
+.shot{aspect-ratio:16/8;max-width:100%;border:1px dashed rgba(255,194,122,.4);border-radius:16px;background:repeating-linear-gradient(135deg,var(--surface) 0 14px,#181310 14px 28px);display:grid;place-items:center;text-align:center;padding:16px}
+.shot.img{padding:0;aspect-ratio:auto;border:1px solid var(--line);background:var(--surface);overflow:hidden;margin:0}
+.shot.img img{display:block;width:100%;height:auto}
+.four{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.four div{background:var(--bg);padding:22px 24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.four dt{font:500 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.four dd{margin:0;color:#DCD2C9;font-size:16px;line-height:1.6}
+
+/* Leadership */
+.lead-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start}
+.pull{font:400 clamp(30px,3.6vw,48px)/1.12 var(--f-display);letter-spacing:-.02em;position:sticky;top:110px}
+.pull em{font-style:italic;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:28px}
+.stat{padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.stat b{font:800 40px/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted);line-height:1.4}
+.practices{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.practices li{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.practices li:last-child{border-bottom:1px solid var(--line)}
+.practices strong{font:600 16px/1.4 var(--f-body)}
+.practices p{color:var(--muted);font-size:16px}
+.team-map{font:500 13px/1.6 var(--f-mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px}
+.team-map span::before{content:"◆ ";color:var(--accent);font-size:9px;vertical-align:2px}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.skill-col{background:var(--bg);padding:28px 24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.skill-col h3{font-size:22px}
+.skill-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;color:#DCD2C9;font-size:15px}
+.skill-col li.top::after{content:"Core";font:500 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,138,43,.45);border-radius:4px;padding:3px 5px;margin-left:8px;vertical-align:2px}
+
+/* Timeline */
+.timeline{list-style:none;margin:0;padding:0}
+.role{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) minmax(0,auto);gap:12px 32px;padding:26px 0;border-top:1px solid var(--line);align-items:baseline}
+.role:last-child{border-bottom:1px solid var(--line)}
+.role time{font:500 13px/1.5 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.role h3{font-size:clamp(22px,2.2vw,28px);line-height:1.15}
+.role .title{color:#DCD2C9;font-size:16px;margin-top:4px}
+.role .loc{font:500 13px/1.5 var(--f-mono);color:var(--muted);text-align:right;white-space:nowrap}
+.role .note{grid-column:2 / -1;color:var(--muted);font-size:15px}
+.role.acq h3::after{content:attr(data-acq);font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-left:12px;vertical-align:4px}
+.edu{margin-top:36px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+.edu strong{font:600 20px/1.3 var(--f-display)}
+.edu span{color:var(--muted)}
+
+/* Contact */
+.contact{padding-block:clamp(40px,6vw,80px)}
+.contact-card{position:relative;overflow:hidden;background:var(--grad);color:#1A0E06;border-radius:32px;padding:clamp(32px,6vw,80px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end}
+.contact-card::after{content:"";position:absolute;right:-10%;top:-40%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 65%);pointer-events:none}
+.contact-card h2{font-size:clamp(44px,6.4vw,92px);line-height:.92;letter-spacing:-.035em}
+.contact-card h2 em{font-style:italic;font-weight:400}
+.contact-card p{font-size:18px;margin-top:20px;max-width:44ch;color:rgba(26,14,6,.8)}
+.contact-actions{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;min-width:0}
+.email-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#1A0E06;color:var(--fg);border-radius:16px;padding:10px 10px 10px 20px;min-width:0}
+.email-row a{font:500 16px/1.3 var(--f-mono);text-decoration:none;overflow-wrap:anywhere;user-select:all}
+.copy{font:600 13px/1 var(--f-body);background:var(--grad);color:#1A0E06;border:0;border-radius:10px;padding:12px 14px;cursor:pointer;white-space:nowrap}
+.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+.contact-links a{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;font:600 15px/1 var(--f-body);text-decoration:none;padding:16px;border-radius:14px;border:1.5px solid rgba(26,14,6,.35);transition:background .2s}
+.contact-links a:hover{background:rgba(26,14,6,.1)}
+.contact-links svg{width:16px;height:16px;fill:currentColor}
+footer{padding-block:32px 48px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font:500 13px/1.5 var(--f-mono);color:var(--muted)}
+
+/* Load motion (starts visible; transform only) */
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+.hero-copy>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.05s}.hero-copy>*:nth-child(3){animation-delay:.1s}.hero-copy>*:nth-child(4){animation-delay:.15s}.hero-copy>*:nth-child(5){animation-delay:.2s}.hero-copy>*:nth-child(6){animation-delay:.25s}
+.feature{animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Responsive */
+@media (max-width:1000px){
+  .nav{display:none}
+  .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .skill-col:last-child{grid-column:1 / -1}
+}
+@media (max-width:860px){
+  .hero-grid,.sec-head,.case,.lead-grid,.contact-card{grid-template-columns:minmax(0,1fr)}
+  .slab{margin-left:0;border-radius:24px 0 0 24px}
+  .portrait{max-width:none}
+  .feature{margin:-80px 16px 0 16px;max-width:none}
+  .pull{position:static}
+  .name em{margin-left:0}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .four{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .skills-grid{grid-template-columns:minmax(0,1fr)}
+  .skill-col:last-child{grid-column:auto}
+  .practices li{grid-template-columns:minmax(0,1fr);gap:6px}
+  .role{grid-template-columns:minmax(0,1fr);gap:4px}
+  .role .loc{text-align:left}
+  .role .note{grid-column:auto}
+  .role.acq h3::after{display:block;margin:8px 0 0}
+  .shot{aspect-ratio:4/3}
+  .btn{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Rasheed Basheer, home">RB<span>.</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#leadership">Leadership</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="social">
+      <a class="icon-btn" href="https://www.linkedin.com/in/rbasheer" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm7 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.14H10v-11Z"/></svg></a>
+      <a class="icon-btn" href="https://github.com/rasheedb" target="_blank" rel="noopener" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.46-1.1-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot" aria-hidden="true"></span><span class="label">Engineering Manager · Senior Frontend Engineer</span><span class="label">Fremont, CA</span></div>
+        <h1 class="name">Rasheed <em>Basheer</em></h1>
+        <p class="thesis">I lead engineering teams that turn complex data into interfaces people rely on, while staying hands-on in the code.</p>
+        <p class="intro">25+ years building software, most recently as a player-coach Engineering Manager leading globally distributed teams across five countries. I've set technical direction across five concurrent product initiatives, cut production incidents by 25%, and taken web applications from zero to production on data platforms handling millions of daily transactions.</p>
+        <div class="skills-block">
+          <span class="label">Core skills</span>
+          <ul class="chips">
+            <li>Engineering Leadership</li><li>React</li><li>TypeScript</li><li>JavaScript</li><li>SQL</li><li>C#</li><li>Java</li><li>UI Architecture</li><li>Real-Time Data Visualization</li>
+          </ul>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#work">View selected work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5Z"/></svg></a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/rbasheer" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/rasheedb" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="slab">
+          <span class="vert" aria-hidden="true">Leader · Builder · Passionate</span>
+          <img class="portrait" src="portrait.jpg" alt="Portrait of Rasheed Basheer, arms crossed, in a black t-shirt against a warm amber backdrop" width="760" height="1013">
+        </div>
+        <a class="feature" href="#case-data-platform">
+          <span class="label">Featured case study</span>
+          <h3>Self-Service Data Modeling Platform</h3>
+          <p>No-code, ETL-style data transformations built from zero, with a 70% increase in user productivity.</p>
+          <span class="more">Read the case study →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="sec" id="leadership">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Engineering <em>leadership</em></h2>
+        <p>I manage teams and still ship code. I set direction, raise the quality bar, and keep engineers growing.</p>
+      </div>
+      <div class="lead-grid">
+        <p class="pull">A player-coach, <em>not a spectator.</em> I lead from inside the codebase.</p>
+        <div>
+          <div class="stats">
+            <div class="stat"><b>25%</b><span>Fewer production incidents through proactive review and remediation</span></div>
+            <div class="stat"><b>5</b><span>Concurrent product initiatives given technical direction at once</span></div>
+            <div class="stat"><b>5</b><span>Countries on my distributed teams</span></div>
+            <div class="stat"><b>4–10</b><span>Engineers managed per team across three companies</span></div>
+          </div>
+          <ul class="practices">
+            <li><strong>Global teams</strong><div><p>Led distributed engineering teams across my two most recent roles.</p><div class="team-map"><span>London</span><span>Sweden</span><span>Vietnam</span><span>India</span><span>Mexico</span></div></div></li>
+            <li><strong>Design before code</strong><p>Created fully fleshed-out project requirements for engineering, plus Technical Design Documents that define the architecture and implementation approach before development starts, in every role I've held.</p></li>
+            <li><strong>Quality standards</strong><p>Created and set coding standards, user interface guidelines, and code-review policies, along with architecture reviews that teams adopted as the default.</p></li>
+            <li><strong>Cross-functional</strong><p>Partnered with product, UX, and backend teams to turn requirements into production features. Assisted with and analyzed A/B tests with UX to validate decisions.</p></li>
+            <li><strong>Growing people</strong><p>Mentored engineers at every level and trained entire development staffs on new UI frameworks and technologies. Held 1-on-1 meetings to drive individual professional growth.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Selected <em>work</em></h2>
+        <p>Three projects across data platforms and healthcare. Each one covers the problem, my role, the technical approach, and the outcome.</p>
+      </div>
+
+      <div class="cases">
+        <article class="case" id="case-data-platform">
+          <div class="case-meta">
+            <span class="where">Enterprise data platform · 2022–2026</span>
+            <h3>Self-Service Data Modeling Platform</h3>
+            <ul class="stack"><li>React</li><li>Redux</li><li>TypeScript</li><li>Material UI</li><li>SSE</li><li>PostgreSQL</li><li>Node.js / Java REST</li></ul>
+            <div class="metric"><b>70%</b><span>Increase in user productivity. Built from zero on infrastructure supporting millions of daily transactions.</span></div>
+          </div>
+          <div class="case-body">
+            <figure class="shot img"><img src="diagram%20of%20the%20data%20modeling%20UI.png" alt="Visual data modeling canvas joining customer and order tables through filter, aggregate, and calculated-field steps into an output view, with generated SQL, data preview, and schema panels" loading="lazy" width="1672" height="941"></figure>
+            <dl class="four">
+              <div><dt>Problem</dt><dd>Users needed to build ETL-style data transformations without writing code, on infrastructure supporting millions of daily transactions.</dd></div>
+              <div><dt>My role</dt><dd>Engineering Manager and hands-on lead engineer. I made the initial architecture, component, and technology decisions with no existing foundation, then carried the application through its full lifecycle.</dd></div>
+              <div><dt>Technical approach</dt><dd>React, Redux, TypeScript, and Material UI on the front end, backed by Node.js/Java REST APIs and PostgreSQL. Server-Sent Events drive real-time client updates. Technical Design Documents set the architecture before development began.</dd></div>
+              <div><dt>Outcome</dt><dd>Broad acceptance among data analysts and data engineers. Increased user productivity by 70%, and gave users deeper understanding of and insight into the production data catalog and data usage.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-meta">
+            <span class="where">Enterprise data pipeline platform</span>
+            <h3>Real-Time Observability Dashboards</h3>
+            <ul class="stack"><li>React</li><li>TypeScript</li><li>SSE</li><li>Data visualization</li><li>Component architecture</li></ul>
+            <div class="metric"><b>~60%</b><span>Less time to diagnose production issues</span></div>
+          </div>
+          <div class="case-body">
+            <figure class="shot img"><img src="KPI%20dashboard.png" alt="Live performance dashboard showing requests per second over time, KPI tiles for requests, success rate, latency, and active sessions, plus traffic, throughput, workload mix, and latency-versus-load charts" loading="lazy" width="1672" height="941"></figure>
+            <dl class="four">
+              <div><dt>Problem</dt><dd>Diagnosing production issues was slow. Users of a large-scale enterprise data pipeline platform had to reason about complex, real-time data flows.</dd></div>
+              <div><dt>My role</dt><dd>UI Architect and Technical Lead. Designed and built the real-time observability dashboards. I owned frontend and cross-stack direction from concept through production, and managed and mentored 4–6 engineers.</dd></div>
+              <div><dt>Technical approach</dt><dd>Real-time data-flow visualizations drawn with React. Reusable component architectures and modular frameworks that became the team's standard pattern. SSE event architecture.</dd></div>
+              <div><dt>Outcome</dt><dd>Cut issue diagnosis time by roughly 60%. Reduced user workflow complexity by about 40% and improved system responsiveness by more than 30%.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-meta">
+            <span class="where">Healthcare · 2003–2011</span>
+            <h3>EHR Platform: Desktop to Enterprise Web</h3>
+            <ul class="stack"><li>Silverlight</li><li>C# / .NET</li><li>Java / WCF</li><li>MS-SQL</li><li>Oracle</li></ul>
+            <div class="metric"><b>90%</b><span>Less enterprise deployment time with a web-based solution. Led a team of 8 developers and designers.</span></div>
+          </div>
+          <div class="case-body">
+            <figure class="shot img"><img src="EHR%20dashboard.png" alt="Electronic health record patient overview showing vital-sign trends, lab trends, medication adherence, health summary, medical history, encounters, active medications, and recent lab results" loading="lazy" width="1672" height="941"></figure>
+            <dl class="four">
+              <div><dt>Problem</dt><dd>A mission-critical Electronic Health Record platform needed to move from desktop to an enterprise web application, in a domain with zero tolerance for data errors.</dd></div>
+              <div><dt>My role</dt><dd>UI Team Lead for 8 developers and designers. I established the core UI framework and development standards and trained the full development staff.</dd></div>
+              <div><dt>Technical approach</dt><dd>Silverlight/C#/.NET front end, Java/WCF services, MS-SQL and Oracle. User-centered design with clinical focus groups. Migrated Medication Management, Clinical Document Builder, SNOMED encoding, and Safe-Med drug-safety checking.</dd></div>
+              <div><dt>Outcome</dt><dd>Decreased enterprise deployment time by 90% with a web-based solution. Improved user workflow and reduced complexity by 60% through a redesign shaped by key client engagement.</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sec" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Technical <em>skills</em></h2>
+        <p>Deep in the frontend, fluent across the stack. Skills marked Core are the ones I lead with.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-col"><span class="label">Frontend</span><h3>Interfaces</h3><ul><li class="top">React</li><li class="top">TypeScript</li><li class="top">JavaScript (ES6+)</li><li>Redux</li><li>Material UI</li><li>HTML5 · CSS3 (Grid, Flexbox)</li><li>Vite</li><li>WCAG accessibility</li></ul></div>
+        <div class="skill-col"><span class="label">Architecture</span><h3>Systems</h3><ul><li class="top">UI Architecture</li><li class="top">Real-Time Data Visualization</li><li>react-konva (2D canvas)</li><li>Component libraries · design systems</li><li>Event-driven UI (SSE)</li><li>Zero-to-one ownership</li></ul></div>
+        <div class="skill-col"><span class="label">Backend &amp; data</span><h3>Services</h3><ul><li class="top">Java</li><li class="top">C#</li><li class="top">SQL</li><li>PostgreSQL</li><li>Node.js · Express</li><li>REST API design</li><li>.NET · WCF</li><li>MS-SQL · Oracle</li></ul></div>
+        <div class="skill-col"><span class="label">Leadership</span><h3>Teams</h3><ul><li class="top">Engineering Leadership</li><li>Technical Design Documents</li><li>A/B testing</li><li>Figma to production</li><li>Jira · Agile delivery</li></ul></div>
+        <div class="skill-col"><span class="label">Learning</span><h3>AI Knowledge</h3><ul><li class="top">Prompt Engineering</li><li class="top">Claude Code</li><li>AI-assisted development</li><li>Python</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Career <em>history</em></h2>
+        <p>Nearly three decades, from C++ on classified UNIX systems to React platforms at enterprise scale.</p>
+      </div>
+      <ol class="timeline">
+        <li class="role"><time>Jan 2022 – Mar 2026</time><div><h3>Cloud Software Group</h3><p class="title">Engineering Manager | Lead Senior UI Software Engineer</p></div><span class="loc">Santa Clara, CA</span></li>
+        <li class="role acq"><time>Nov 2017 – Jan 2022</time><div><h3 data-acq="Acquired by Cloud Software Group">TIBCO Software</h3><p class="title">Lead Senior UI Software Engineer | UI Architect | Technical Lead</p></div><span class="loc">Palo Alto, CA</span></li>
+        <li class="role"><time>Dec 2013 – Oct 2017</time><div><h3>Cisco Systems</h3><p class="title">Senior UI Developer &amp; Technical Lead</p></div><span class="loc">San Jose, CA</span></li>
+        <li class="role acq"><time>Feb 2013 – Dec 2013</time><div><h3 data-acq="Acquired by Cisco">Composite Software</h3><p class="title">Senior UI Developer</p></div><span class="loc">San Mateo, CA</span></li>
+        <li class="role"><time>Sep 2011 – Feb 2013</time><div><h3>PricewaterhouseCoopers</h3><p class="title">Senior UI Developer (Consultant)</p></div><span class="loc">San Jose, CA</span></li>
+        <li class="role"><time>Apr 2003 – Mar 2011</time><div><h3>NextGen Healthcare</h3><p class="title">Senior Software Engineer &amp; UI Team Lead</p></div><span class="loc">Horsham, PA</span></li>
+        <li class="role"><time>1998 – 2003</time><div><h3>Earlier career</h3><p class="title">Science Dynamics (real-time telecom, C/C++) · Lockheed Martin (UNIX data replay systems, C++) · BD Biosciences (C#/.NET) · Firmenich</p></div><span class="loc"></span></li>
+      </ol>
+      <div class="edu"><span class="label">Education</span><strong>BS, Computer Science</strong><span>North Carolina A&amp;T State University</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <h2>Let's build something <em>people rely on.</em></h2>
+          <p>I'm open to Principal frontend, UI Architect, and Engineering Manager roles.</p>
+        </div>
+        <div class="contact-actions">
+          <div class="email-row"><a href="mailto:rasheedb@hotmail.com" id="email">rasheedb@hotmail.com</a><button class="copy" id="copy" type="button">Copy email</button></div>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/rbasheer" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm7 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.14H10v-11Z"/></svg>LinkedIn</a>
+            <a href="https://github.com/rasheedb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.46-1.1-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Rasheed Basheer</span><span>Fremont, CA</span></div></footer>
+
+<script>
+document.getElementById('copy').addEventListener('click', function(){
+  var btn=this, email='rasheedb@hotmail.com';
+  function done(t){btn.textContent=t;setTimeout(function(){btn.textContent='Copy email'},1800)}
+  function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);done('Selected')}
+  try{navigator.clipboard.writeText(email).then(function(){done('Copied')},fallback)}catch(e){fallback()}
+});
+</script>
+
+</body>
+</html>
